@@ -1,13 +1,19 @@
-import WebSocket from 'ws';
+import { WebSocketServer } from 'ws';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const HTTP_PORT = Number(process.env.PORT) || 8181;
+const HTTP_PORT = Number(process.env.PORT) || 3000;
 
-const ws = new WebSocket.Server({ port: HTTP_PORT }, () => {
+const wss = new WebSocketServer({ port: HTTP_PORT }, () => {
   console.log(`⚡️[server]: Websocket server is running at http://localhost:${HTTP_PORT}`);
 });
 
-ws.on('connection', () => {
+wss.on('connection', (ws) => {
   console.log('User connected to server...');
+  ws.on('message', async (data) => {
+    console.log('User sent: %s', data);
+  });
+  ws.on('close', () => {
+    console.log('Websocket connection closed...');
+  });
 });
