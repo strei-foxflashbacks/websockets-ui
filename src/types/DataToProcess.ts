@@ -3,7 +3,7 @@ import { AddUserTORoomData } from './AddUserToRoomData';
 import { CreateGameData } from './CreateGameData';
 import { UserData } from './UserData';
 import { WinnersData } from './WinnersData';
-import { UpdateRoomData } from './UpdateRoomData';
+import { RoomData } from './RoomData';
 import { AddShipsData } from './AddShipsData';
 import { StartGameData } from './StartGameData';
 import { AttackData } from './AttackData';
@@ -19,7 +19,7 @@ export type DataToProcess = {
   | WinnersData[]
   | AddUserTORoomData
   | CreateGameData
-  | UpdateRoomData[]
+  | RoomData[]
   | AddShipsData
   | StartGameData
   | AttackData

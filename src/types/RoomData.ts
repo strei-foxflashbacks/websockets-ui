@@ -1,6 +1,6 @@
 import { UserData } from './UserData';
 
-export type UpdateRoomData = {
+export type RoomData = {
   roomId: number,
   roomUsers: UserData[],
 };
