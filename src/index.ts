@@ -13,7 +13,7 @@ wss.on('connection', (ws) => {
   console.log('User connected to server...');
   ws.on('message', async (data) => {
     console.log('User sent: %s', data);
-    messageController(data);
+    await messageController(data, ws);
   });
   ws.on('close', () => {
     console.log('Websocket connection closed...');

@@ -1,0 +1,24 @@
+import WebSocket from 'ws';
+import { UserData } from '../types/UserData';
+import registerOrLogin from '../models/registerOrLogin';
+import { DataToProcess } from '../types/DataToProcess';
+
+const registerUser = async (sentData: UserData, requestId: number, ws: WebSocket) => {
+  try {
+    const username = sentData.name;
+    const password = sentData.password;
+    const resolvedUser = await registerOrLogin(username, password as string);
+    const userResponse: DataToProcess = {
+      type: 'reg',
+      data: resolvedUser as UserData,
+      id: requestId,
+    };
+    ws.send(JSON.stringify(userResponse));
+  } catch {
+    const errorMessage = {
+      message: 'Registration failed',
+    };
+    ws.send(JSON.stringify(errorMessage));
+  }
+};
+export default registerUser;
