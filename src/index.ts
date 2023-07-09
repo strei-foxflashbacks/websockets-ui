@@ -1,12 +1,17 @@
 import { WebSocketServer } from 'ws';
+import { httpServer } from './http_server';
 import dotenv from 'dotenv';
 import messageController from './controllers/messageController';
 dotenv.config();
 
-const HTTP_PORT = Number(process.env.PORT) || 3000;
+const WS_PORT = Number(process.env.PORT) || 3000;
+const HTTP_PORT = 8181;
 
-const wss = new WebSocketServer({ port: HTTP_PORT }, () => {
-  console.log(`⚡️[server]: Websocket server is running at http://localhost:${HTTP_PORT}`);
+console.log(`Start static http server on the ${HTTP_PORT} port!`);
+httpServer.listen(HTTP_PORT);
+
+const wss = new WebSocketServer({ port: WS_PORT }, () => {
+  console.log(`⚡️[server]: Websocket server is running at http://localhost:${WS_PORT}`);
 });
 
 wss.on('connection', (ws) => {
