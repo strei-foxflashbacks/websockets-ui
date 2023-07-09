@@ -1,4 +1,4 @@
-export type UpdateWinnersData = {
+export type WinnersData = {
   name: string,
   wins: number,
 };

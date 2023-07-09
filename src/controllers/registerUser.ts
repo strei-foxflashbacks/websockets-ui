@@ -2,6 +2,7 @@ import WebSocket from 'ws';
 import { UserData } from '../types/UserData';
 import registerOrLogin from '../models/registerOrLogin';
 import { DataToProcess } from '../types/DataToProcess';
+import updateWinners from './updateWinners';
 
 const registerUser = async (sentData: UserData, requestId: number, ws: WebSocket) => {
   try {
@@ -13,7 +14,9 @@ const registerUser = async (sentData: UserData, requestId: number, ws: WebSocket
       data: resolvedUser as UserData,
       id: requestId,
     };
+    const winnersUpdateResonse = await updateWinners(resolvedUser.name);
     ws.send(JSON.stringify(userResponse));
+    ws.send(JSON.stringify(winnersUpdateResonse));
   } catch {
     const errorMessage = {
       message: 'Registration failed',

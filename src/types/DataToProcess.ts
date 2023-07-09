@@ -2,7 +2,7 @@ import { TypeOfMessage } from './TypeOfMessage';
 import { AddUserTORoomData } from './AddUserToRoomData';
 import { CreateGameData } from './CreateGameData';
 import { UserData } from './UserData';
-import { UpdateWinnersData } from './UpdateWinnersData';
+import { WinnersData } from './WinnersData';
 import { UpdateRoomData } from './UpdateRoomData';
 import { AddShipsData } from './AddShipsData';
 import { StartGameData } from './StartGameData';
@@ -16,7 +16,7 @@ export type DataToProcess = {
   type: TypeOfMessage,
   data: ''
   | UserData
-  | UpdateWinnersData[]
+  | WinnersData[]
   | AddUserTORoomData
   | CreateGameData
   | UpdateRoomData[]

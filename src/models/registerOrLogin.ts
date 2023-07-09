@@ -1,7 +1,7 @@
 import users from '../database/users';
 import { UserData } from '../types/UserData';
 
-const registerOrLogin = (username: string, password: string) => {
+const registerOrLogin = (username: string, password: string): Promise<UserData> => {
   return new Promise((resolve) => {
     const registeredUser = users.find((user) => user.name === username);
     if (registeredUser) {
